@@ -31,7 +31,6 @@ import type {
 import { LEVEL_CLIENT, qlabel, qualityKey } from "./types";
 
 const SEV_ORD: Severity[] = ["NONE", "MILD", "MODERATE", "HIGH", "VERY_HIGH"];
-const REL_ORD: RelevanceLevel[] = ["NONE", "LOW", "MODERATE", "HIGH", "VERY_HIGH"];
 const CONF_ORD: Confidence[] = ["LOW", "MODERATE", "HIGH"];
 const FUNC_ORD: FunctionalRelevance[] = ["LOW", "MODERATE", "HIGH"];
 const maxOf = <T extends string>(vals: T[], order: T[]) =>

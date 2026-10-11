@@ -174,7 +174,6 @@ export async function loadRetestReview(
   const compareId = opts?.compareId ?? earlier[0]?.id ?? null;
   const baseline = sessions.slice().reverse().find((s) => s.assessment_type === "baseline") ?? sessions[sessions.length - 1] ?? null;
   const currentMeta = sessions.find((s) => s.id === currentId) ?? null;
-  const compareMeta = sessions.find((s) => s.id === compareId) ?? null;
 
   const historyMetas = [...sessions].reverse();
   const snapshots = await Promise.all(historyMetas.map((s) => loadSnapshot(supabase, s)));

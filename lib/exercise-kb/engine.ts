@@ -565,7 +565,8 @@ export function selectWeek(opts: {
   };
 }
 
-export function applySelectionOverride(_auto: SelectionResult, _override: SelectionOverride | null | undefined): SelectionResult {
+export function applySelectionOverride(auto: SelectionResult, override: SelectionOverride | null | undefined): SelectionResult {
   // Locks and replacements are applied inside selectWeek so hard filters still win.
-  return _auto;
+  void override;
+  return auto;
 }

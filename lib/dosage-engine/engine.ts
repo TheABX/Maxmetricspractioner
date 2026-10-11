@@ -453,7 +453,7 @@ function prescribeOne(ctx: {
   }
 
   const band = pickBand(mode, stage, ex);
-  let sets = startingSets(band, priority, stage, goal, profile, effective, ctx.sessionMinutes);
+  let sets = startingSets(band, stage, profile, effective);
   let [repsMin, repsMax] = band.reps;
   let [rirMin, rirMax] = band.rir;
   let [restMin, restMax] = band.rest;
@@ -607,12 +607,9 @@ function pickBand(mode: "strength" | "hypertrophy" | "isolation", stage: Effecti
 
 function startingSets(
   band: Band,
-  _priority: Prescription["priority_level"],
   stage: EffectiveClassification["training_stage"],
-  _goal: Goal | null,
   profile: ProfileInput,
   effective: EffectiveClassification,
-  _sessionMinutes: number,
 ): number {
   let sets = band.sets[0];
   if (profile.program_mode === "GENERAL_WELLNESS") sets = Math.min(sets, stage === "FOUNDATION" ? 2 : 3);

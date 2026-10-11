@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useMemo, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { bulkUpdateExercises, deactivateExercise, deleteExercise, duplicateExercise, setExerciseFlag } from "@/app/library-actions";
-import { buttonClass, ghostButtonClass, inputClass } from "@/components/ui";
+import { ghostButtonClass, inputClass } from "@/components/ui";
 import { pretty, type ExerciseRecord } from "@/lib/exercise-kb/types";
 import type { FamilyRow } from "@/lib/exercise-kb/load";
 

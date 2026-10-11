@@ -27,7 +27,6 @@ import {
 import {
   WEIGHTS_ID,
   type AdaptAction,
-  type AdaptConfidence,
   type AdaptInput,
   type AdaptTrend,
   type AdaptationOverride,
@@ -35,10 +34,8 @@ import {
   type AdherenceBand,
   type AdherenceReason,
   type ClientAdaptation,
-  type DecisionState,
   type DraftMessage,
   type ExerciseDecision,
-  type ExerciseStatus,
   type Exposure,
   type PainCourse,
   type PainLevel,

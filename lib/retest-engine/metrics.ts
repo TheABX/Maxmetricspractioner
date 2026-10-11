@@ -1,5 +1,5 @@
 import type { Quality } from "@/lib/priority-engine/types";
-import type { AssessmentSnapshot, Favourable, MetricDomain, ProtocolStamp, SnapshotMetric } from "./types";
+import type { AssessmentSnapshot, MetricDomain, ProtocolStamp, SnapshotMetric } from "./types";
 
 const ISO_QUALITY: Record<string, Quality> = {
   ISO_GLOBAL_LOWER_BODY: "LOWER_BODY_STRENGTH",
