@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #17202a;
+  --muted: #5c6770;
+  --paper: #f4efe6;
+  --card: #fffcf7;
+  --line: #e2d8c8;
+  --accent: #1f4d3a;
+  --accent-2: #c45c26;
+}
+
+html,
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+}
+
+body {
+  min-height: 100vh;
+}
+
+code,
+input,
+select,
+textarea,
+button {
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+}
+
+a {
+  color: inherit;
+}

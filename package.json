@@ -1,0 +1,33 @@
+{
+  "name": "maxmetrics",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "mobile": "npm start --prefix mobile"
+  },
+  "dependencies": {
+    "@eslint/eslintrc": "^3.3.7",
+    "@react-pdf/renderer": "^4.9.0",
+    "@supabase/ssr": "^0.8.0",
+    "@supabase/supabase-js": "^2.87.1",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^22.20.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^15.5.4",
+    "exceljs": "^4.4.0",
+    "expo": "^57.0.25",
+    "next": "^15.5.4",
+    "postcss": "^8.5.28",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.2",
+    "react-native": "0.86.3"
+  }
+}
