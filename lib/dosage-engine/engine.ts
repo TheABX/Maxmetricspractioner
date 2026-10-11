@@ -457,9 +457,9 @@ function prescribeOne(ctx: {
   let [repsMin, repsMax] = band.reps;
   let [rirMin, rirMax] = band.rir;
   let [restMin, restMax] = band.rest;
-  let scheme: RepScheme = repsMin === repsMax ? "FIXED_REPS" : "REP_RANGE";
-  let loadType: LoadType = "RIR";
-  let progression: ProgressionMethod = mode === "strength" && stage !== "FOUNDATION" && goal === "MAXIMAL_STRENGTH" ? "LOAD_PROGRESSION" : "DOUBLE_PROGRESSION";
+  const scheme: RepScheme = repsMin === repsMax ? "FIXED_REPS" : "REP_RANGE";
+  const loadType: LoadType = "RIR";
+  const progression: ProgressionMethod = mode === "strength" && stage !== "FOUNDATION" && goal === "MAXIMAL_STRENGTH" ? "LOAD_PROGRESSION" : "DOUBLE_PROGRESSION";
 
   if (profile.program_mode === "GENERAL_WELLNESS" && stage === "FOUNDATION") {
     sets = Math.min(sets, 2);

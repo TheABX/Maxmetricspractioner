@@ -297,7 +297,7 @@ export function runStructureEngine(input: {
       (x.effective_priority === "P1_PRIMARY" || x.effective_priority === "P2_SECONDARY"),
   );
 
-  let sessions = input.override?.recommended_sessions_per_week ?? chooseFrequency({
+  const sessions = input.override?.recommended_sessions_per_week ?? chooseFrequency({
     available: availableDays,
     preferred: preferredSessions,
     maximum: maxSessions,
