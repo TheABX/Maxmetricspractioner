@@ -1,6 +1,12 @@
+import { MissingSupabaseConfig } from "@/components/missing-supabase-config";
+import { getSupabasePublicEnv } from "@/lib/supabase/env";
 import { LoginForm } from "./login-form";
 
 export default function LoginPage() {
+  if (!getSupabasePublicEnv()) {
+    return <MissingSupabaseConfig />;
+  }
+
   return (
     <div className="mx-auto flex min-h-screen max-w-lg flex-col justify-center px-6">
       <p className="font-sans text-xs uppercase tracking-[0.25em] text-[var(--muted)]">MAXMetrics</p>

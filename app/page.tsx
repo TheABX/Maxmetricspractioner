@@ -1,6 +1,8 @@
 import { createClient } from "@/lib/supabase/server";
 import { AppShell, Card } from "@/components/ui";
+import { MissingSupabaseConfig } from "@/components/missing-supabase-config";
 import { StatusPill } from "@/components/action-button";
+import { getSupabasePublicEnv } from "@/lib/supabase/env";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -9,9 +11,19 @@ export default async function HomePage({
 }: {
   searchParams: Promise<{ q?: string }>;
 }) {
+  if (!getSupabasePublicEnv()) {
+    return <MissingSupabaseConfig />;
+  }
+
   const supabase = await createClient();
-  const { data } = await supabase.auth.getClaims();
-  if (!data?.claims) redirect("/login");
+  let claims: { email?: string } | null = null;
+  try {
+    const { data } = await supabase.auth.getClaims();
+    claims = data?.claims ?? null;
+  } catch {
+    redirect("/login");
+  }
+  if (!claims) redirect("/login");
 
   const { q } = await searchParams;
   let clientQuery = supabase
@@ -88,7 +100,7 @@ export default async function HomePage({
     (pendingMsgs ?? []).length === 0;
 
   return (
-    <AppShell practitionerEmail={String(data.claims.email ?? "")}>
+    <AppShell practitionerEmail={String(claims.email ?? "")}>
       <p className="font-sans text-xs uppercase tracking-[0.2em] text-[var(--muted)]">Practitioner dashboard</p>
       <h1 className="mt-2 text-4xl">Clinic home</h1>
       <p className="mt-2 max-w-2xl text-[var(--muted)]">

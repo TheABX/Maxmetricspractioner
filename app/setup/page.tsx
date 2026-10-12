@@ -1,9 +1,15 @@
 import { readFile } from "fs/promises";
 import path from "path";
 import { AppShell } from "@/components/ui";
+import { MissingSupabaseConfig } from "@/components/missing-supabase-config";
 import { createClient } from "@/lib/supabase/server";
+import { getSupabasePublicEnv } from "@/lib/supabase/env";
 
 export default async function SetupPage() {
+  if (!getSupabasePublicEnv()) {
+    return <MissingSupabaseConfig />;
+  }
+
   const supabase = await createClient();
   const { data } = await supabase.auth.getClaims();
   const sql = await readFile(
