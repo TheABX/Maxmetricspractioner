@@ -4,7 +4,7 @@ import { MissingSupabaseConfig } from "@/components/missing-supabase-config";
 import { StatusPill } from "@/components/action-button";
 import { getSupabasePublicEnv } from "@/lib/supabase/env";
 import Link from "next/link";
-import { redirect, unstable_rethrow } from "next/navigation";
+import { redirect } from "next/navigation";
 
 export default async function HomePage({
   searchParams,
@@ -21,8 +21,7 @@ export default async function HomePage({
     supabase = await createClient();
     const { data } = await supabase.auth.getClaims();
     claims = data?.claims ?? null;
-  } catch (error) {
-    unstable_rethrow(error);
+  } catch {
     redirect("/login");
   }
   if (!claims) redirect("/login");
@@ -36,9 +35,8 @@ export default async function HomePage({
   if (q) {
     clientQuery = clientQuery.or(`first_name.ilike.%${q}%,last_name.ilike.%${q}%`);
   }
-  let clients, recent, reports, draftPrograms, recentLogs, newResponses, queue, snapshots, pendingMsgs;
-  try {
-  const results = await Promise.all([
+  const [{ data: clients }, { data: recent }, { data: reports }, { data: draftPrograms }, { data: recentLogs }, { data: newResponses }, { data: queue }, { data: snapshots }, { data: pendingMsgs }] =
+    await Promise.all([
       clientQuery,
       supabase
         .from("assessment_sessions")
@@ -81,21 +79,6 @@ export default async function HomePage({
         .in("automation_status", ["PENDING_APPROVAL", "DRAFT"])
         .limit(8),
     ]);
-  [
-    { data: clients },
-    { data: recent },
-    { data: reports },
-    { data: draftPrograms },
-    { data: recentLogs },
-    { data: newResponses },
-    { data: queue },
-    { data: snapshots },
-    { data: pendingMsgs },
-  ] = results;
-  } catch (error) {
-    unstable_rethrow(error);
-    clients = recent = reports = draftPrograms = recentLogs = newResponses = queue = snapshots = pendingMsgs = null;
-  }
   const trafficCount = (color: string) =>
     (snapshots ?? []).filter((s) => (s.adaptation as { client?: { traffic?: string } } | null)?.client?.traffic === color).length;
 

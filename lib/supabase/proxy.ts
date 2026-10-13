@@ -12,6 +12,7 @@ export async function updateSession(request: NextRequest) {
   const supabaseResponse = NextResponse.next({ request });
   const path = request.nextUrl.pathname;
   const publicPaths =
+    path === "/" ||
     path.startsWith("/login") ||
     path.startsWith("/join") ||
     path.startsWith("/auth") ||
