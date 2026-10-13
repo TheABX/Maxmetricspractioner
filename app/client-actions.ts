@@ -13,7 +13,7 @@ async function requireClient() {
   const viewer = await resolveViewer(supabase);
   if (viewer.role === "anonymous") redirect("/join");
   if (viewer.role === "unlinked") redirect("/join?unlinked=1");
-  if (viewer.role !== "client") redirect("/");
+  if (viewer.role !== "client") redirect("/home");
   return { supabase, viewer };
 }
 
@@ -58,7 +58,7 @@ export async function clientSignIn(formData: FormData) {
   if (error) return { error: error.message };
   const viewer = await resolveViewer(supabase);
   if (viewer.role === "client") redirect("/me");
-  if (viewer.role === "practitioner") redirect("/");
+  if (viewer.role === "practitioner") redirect("/home");
   const { data: claimed } = await supabase.rpc("claim_client_profile");
   if (claimed) redirect("/me");
   await supabase.auth.signOut();

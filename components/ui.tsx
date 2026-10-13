@@ -14,11 +14,11 @@ export function AppShell({
     <div className="min-h-screen">
       <header className="border-b border-[var(--line)] bg-[var(--card)]">
         <div className={`mx-auto flex items-center justify-between px-6 py-4 ${wide ? "max-w-[1500px]" : "max-w-6xl"}`}>
-          <Link href="/" className="tracking-[0.2em] text-sm uppercase">
+          <Link href="/home" className="tracking-[0.2em] text-sm uppercase">
             MAXMetrics
           </Link>
           <nav className="flex items-center gap-5 text-sm font-sans text-[var(--muted)]">
-            <Link href="/">Dashboard</Link>
+            <Link href="/home">Dashboard</Link>
             <Link href="/clients">Clients</Link>
             <Link href="/programs">Programs</Link>
             <Link href="/exercises">Exercise library</Link>

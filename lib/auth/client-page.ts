@@ -7,7 +7,7 @@ export async function requireClientPage() {
   const viewer = await resolveViewer(supabase);
   if (viewer.role === "anonymous") redirect("/join");
   if (viewer.role === "unlinked") redirect("/join?unlinked=1");
-  if (viewer.role === "practitioner") redirect("/");
+  if (viewer.role === "practitioner") redirect("/home");
   const { data: client } = await supabase
     .from("clients")
     .select("id, first_name, last_name, email, practitioner_id")

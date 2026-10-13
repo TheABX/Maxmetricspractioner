@@ -35,7 +35,7 @@ export async function signIn(formData: FormData) {
   const password = String(formData.get("password") ?? "");
   const { error } = await supabase.auth.signInWithPassword({ email, password });
   if (error) return { error: error.message };
-  redirect("/");
+  redirect("/home");
 }
 
 export async function signUp(formData: FormData) {
@@ -49,7 +49,7 @@ export async function signUp(formData: FormData) {
     options: { data: { full_name: fullName } },
   });
   if (error) return { error: error.message };
-  redirect("/");
+  redirect("/home");
 }
 
 export async function signOut() {

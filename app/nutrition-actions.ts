@@ -17,7 +17,7 @@ async function requireClient() {
   const viewer = await resolveViewer(supabase);
   if (viewer.role === "anonymous") redirect("/join");
   if (viewer.role === "unlinked") redirect("/join?unlinked=1");
-  if (viewer.role !== "client") redirect("/");
+  if (viewer.role !== "client") redirect("/home");
   return { supabase, viewer };
 }
 

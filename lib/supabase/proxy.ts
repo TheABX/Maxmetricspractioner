@@ -20,6 +20,11 @@ export async function updateSession(request: NextRequest) {
     path.startsWith("/api/sample-force-plate-pdf") ||
     path.startsWith("/api/sample-combined-pdf");
 
+  // Landing is static and must never touch Supabase — that is what 500'd `/` on Vercel.
+  if (path === "/") {
+    return supabaseResponse;
+  }
+
   const env = getSupabasePublicEnv();
   if (!env) {
     return supabaseResponse;
