@@ -1,12 +1,29 @@
-import type { NextRequest } from "next/server";
-import { updateSession } from "@/lib/supabase/proxy";
+import { NextResponse, type NextRequest } from "next/server";
+
+function isPublicPath(path: string) {
+  return (
+    path === "/" ||
+    path.startsWith("/login") ||
+    path.startsWith("/join") ||
+    path.startsWith("/auth") ||
+    path.startsWith("/setup") ||
+    path.startsWith("/api/sample-force-plate-pdf") ||
+    path.startsWith("/api/sample-combined-pdf")
+  );
+}
 
 export async function middleware(request: NextRequest) {
-  return await updateSession(request);
+  if (isPublicPath(request.nextUrl.pathname)) {
+    return NextResponse.next();
+  }
+
+  const { updateSession } = await import("@/lib/supabase/proxy");
+  return updateSession(request);
 }
 
 export const config = {
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    // `.+` excludes `/` so Edge never boots Supabase for the landing page.
+    "/((?!_next/static|_next/image|favicon.ico|login|join|auth|setup|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).+)",
   ],
 };
