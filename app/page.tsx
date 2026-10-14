@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+export const dynamic = "force-static";
+
 export default function LandingPage() {
   return (
     <div className="mx-auto flex min-h-screen max-w-lg flex-col justify-center px-6">

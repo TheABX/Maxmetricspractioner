@@ -6,8 +6,10 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "mobile": "npm start --prefix mobile"
+    "lint": "eslint"
+  },
+  "engines": {
+    "node": "20.x"
   },
   "dependencies": {
     "@eslint/eslintrc": "^3.3.7",
@@ -21,7 +23,7 @@
     "eslint": "^9.39.5",
     "eslint-config-next": "15.5.27",
     "exceljs": "^4.4.0",
-    "next": "^15.5.27",
+    "next": "15.5.27",
     "postcss": "^8.5.28",
     "react": "19.1.9",
     "react-dom": "19.1.9",
