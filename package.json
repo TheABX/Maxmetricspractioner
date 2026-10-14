@@ -9,7 +9,7 @@
     "lint": "eslint"
   },
   "engines": {
-    "node": "20.x"
+    "node": "24.x"
   },
   "dependencies": {
     "@eslint/eslintrc": "^3.3.7",
